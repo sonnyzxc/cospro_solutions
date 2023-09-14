@@ -8,7 +8,6 @@ def solution(s1, s2, p, q):
         remainder = decimal_sum % q
         result = str(remainder) + result
         decimal_sum //= q
-
     return result
 
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다.

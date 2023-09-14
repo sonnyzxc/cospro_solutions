@@ -2,9 +2,29 @@
 #import math
 
 def solution(number, target):
-    #여기에 코드를 작성해주세요.
-    answer = 0
-    return answer
+    # DP (2xN tiling problem?)
+    # gave up on this question
+    dp = [-1]*(2*target+1)
+
+    for i in range(1, number+1):
+        dp[i] = number - i
+        dp[i*2] = dp[i] + 1
+
+    dp[number+1] = 1
+
+    for i in range(number+2, target+1):
+        min_num = min(dp[i-1]+1, dp[i//2]+1) if (i % 2 == 0) and (i//2 >= number) else dp[i-1]+1
+
+        if dp[i+1] != -1:
+            min_num = min(min_num, dp[i+1]+1)
+
+        if dp[i] != -1:
+            min_num = min(min_num, dp[i])
+
+        dp[i] = min_num
+        dp[i*2] = min_num+1
+
+    return dp[target]
 
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다.
 number1 = 5
