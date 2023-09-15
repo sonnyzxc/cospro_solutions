@@ -2,9 +2,25 @@
 #import math
 
 def solution(K, words):
-    #여기에 코드를 작성해주세요.
-    answer = 0
-    return answer
+	answer = 1
+	rest_len = K
+	is_first = True
+	for word in words:
+		if is_first:
+			length = len(word)
+		else:
+			length = len(word) + 1
+
+		if 0<= rest_len - length <= K:
+			rest_len -= length
+			is_first = False
+		else:
+			answer += 1
+			rest_len = K-length
+			is_first = True
+
+	return answer
+
 
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다.
 K = 10

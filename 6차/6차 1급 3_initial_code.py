@@ -1,10 +1,18 @@
 #다음과 같이 import를 사용할 수 있습니다.
 #import math
+import itertools
 
 def solution(arr, K):
-    #여기에 코드를 작성해주세요.
-    answer = 0
-    return answer
+	answer = 10001
+	list_a = list(itertools.combinations(arr, K))
+
+	for nums in list_a:
+		list_nums = list(set(nums))
+		max_n, min_n = max(list_nums), min(list_nums)
+		rtn = max_n - min_n
+		if rtn < answer:
+			answer = rtn
+	return answer
 
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다.
 arr = [9, 11, 9, 6, 4, 19]
